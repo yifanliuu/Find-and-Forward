@@ -2,21 +2,27 @@
   "name": "drizzle-vue-box",
   "version": "0.0.1",
   "description": "",
-  "main": "truffle-config.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
   "author": {
     "name": "Amal Sudama",
     "email": "amal@trufflesuite.com",
     "url": "http://github.com/truffle-box/drizzle-vue-box"
   },
-  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "truffle-config.js",
   "dependencies": {
-    "openzeppelin-solidity": "^2.1.1"
-  }
+    "@mdi/font": "^3.6.95",
+    "openzeppelin-solidity": "^2.1.1",
+    "roboto-fontface": "*",
+    "vuetify": "^2.2.11"
+  },
+  "devDependencies": {
+    "vue-cli-plugin-vuetify": "~2.0.5"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [],
+  "license": "ISC"
 }
