@@ -1,309 +1,49 @@
 <template>
-    <div class="home">
-        <Default>
-            <div class="my_msg_list">
-                <div class="my_msg_list_view">
-                    <div class="my_msg_list_box">
-                        <div class="my_msg_list_con">
-                            <div class="my_msg_list_title">
-                                <span>消息总数：</span><span>3</span>
-                                <a class="fr">清空所有消息</a>
-                                <span class="line fr"></span>
-                                <a class="fr">全部标记为已读</a>
-                            </div>
-                            <div class="msg_list">
-                                <!---->
-                                <ul class="msg_list_ul">
-                                    <li class="msg_list_ul_li">
-                                        <span class="msg_type ">系统</span>
-                                        <span class="msg_info_box">
-                                            <span class="msg_title"
-                                                >测试第一个消息</span
-                                            >
-                                        </span>
-                                        <div class="fr options_info options-f">
-                                            <a
-                                                class="btn-rush csdnc-trash"
-                                                style="float: right;"
-                                            >
-                                            </a>
-                                            <em
-                                                class="data-time"
-                                                style="float: right;padding-right:10px"
-                                                >2019-03-28</em
-                                            >
-                                        </div>
-                                        <div class="msg_content ">
-                                            第一个测试发送消息的内容
-                                        </div>
-                                    </li>
-                                    <li class="msg_list_ul_li">
-                                        <span class="msg_type ">系统</span>
-                                        <span class="msg_info_box">
-                                            <span class="msg_title"
-                                                >第一个测试发送消息的内容</span
-                                            >
-                                        </span>
-                                        <div class="fr options_info options-f">
-                                            <a
-                                                class="btn-rush csdnc-trash"
-                                                style="float: right;"
-                                            >
-                                            </a>
-                                            <em
-                                                class="data-time"
-                                                style="float: right;padding-right:10px"
-                                                >2019-03-28</em
-                                            >
-                                        </div>
-                                        <div class="msg_content ">
-                                            第一个测试发送消息的内容
-                                        </div>
-                                    </li>
-                                    <li class="msg_list_ul_li">
-                                        <span class="msg_type ">系统</span>
-                                        <span class="msg_info_box">
-                                            <span class="msg_title"
-                                                >测试第二个消息</span
-                                            >
-                                        </span>
-                                        <div class="fr options_info options-f">
-                                            <a
-                                                class="btn-rush csdnc-trash"
-                                                style="float: right;"
-                                            >
-                                            </a>
-                                            <em
-                                                class="data-time"
-                                                style="float: right;padding-right:10px"
-                                                >2019-03-28</em
-                                            >
-                                        </div>
-                                        <div class="msg_content ">
-                                            第三个测试发送消息的内容
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="page-box"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </Default>
-    </div>
+  <div class="home">
+    <Default>
+      <v-tab v-for="(item,idx) in messages" :key="(item,idx)">
+        <el-button type="text" @click="open(idx)">{{item}}</el-button>
+      </v-tab>
+    </Default>
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Default from "../layout/default";
-
 export default {
-    name: "Message",
-    components: {
-        Default,
+  name: "Message",
+  components: {
+    Default,
+  },
+
+  data() {
+    return {
+      activeName: "second",
+      messages: ["message1", "message2", "message3"],
+      message_titles: ["title1", "title2", "title3"],
+      message_contents: [
+        "here is message 1",
+        "here is message 2",
+        "here is message 3",
+      ],
+    };
+  },
+  methods: {
+    handleClick(tab, event) {
+      console.log(tab, event);
     },
+    open(index) {
+      this.$alert(this.message_contents[index], this.message_titles[index], {
+        confirmButtonText: "确定",
+        /*callback: action => {
+            this.$message({
+              type: 'info',
+              message: `action: ${ action }`
+            });
+          }*/
+      });
+    },
+  },
 };
 </script>
-<style scoped>
-div {
-    display: block;
-}
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6,
-a,
-abbr,
-body,
-cite,
-dd,
-dl,
-dt,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-iframe,
-input,
-li,
-object,
-ol,
-p,
-pre,
-span,
-ul {
-    font-family: "Microsoft YaHei", "SF Pro Display", Roboto, Noto, Arial,
-        "PingFang SC", sans-serif;
-}
-a {
-    text-decoration: none;
-    cursor: pointer;
-}
-ul,
-li,
-ol,
-dl,
-dt,
-dd {
-    list-style: none;
-}
-div,
-figure,
-footer,
-header,
-hgroup,
-html,
-iframe,
-img,
-mark,
-menu,
-nav,
-object,
-section,
-span,
-summary,
-table,
-tbody,
-td,
-tfoot,
-thead,
-tr,
-video {
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
-
-.my_msg_list {
-    width: 1000px;
-    min-height: 400px;
-    margin-bottom: 20px;
-}
-.my_msg_list_view {
-    position: relative;
-    margin-left: 200px;
-    background-color: #fff;
-    padding: 24px 16px;
-    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.28);
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.28);
-    min-height: 520px;
-    box-sizing: border-box;
-}
-.my_msg_list_box {
-    border: 0;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.my_msg_list_con {
-    border: 0;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.my_msg_list_title {
-    width: 100%;
-    margin: 0;
-    font-size: 14px;
-    color: #3d3d3d;
-    margin-bottom: 8px;
-    display: block;
-    overflow: hidden;
-    zoom: 1;
-    box-sizing: border-box;
-}
-.fr {
-    display: inline-block;
-    color: #4a90e2;
-}
-.line {
-    display: inline-block;
-    height: 12px;
-    margin: 2px 12px;
-    border-right: 1px solid #979797;
-}
-
-.msg_list {
-    padding: 0 0 0 15px;
-    min-height: 370px;
-    box-sizing: border-box;
-}
-.msg_list_ul {
-    font-size: 14px;
-    vertical-align: baseline;
-    margin: 0;
-    padding: 0;
-}
-.msg_list_ul_li {
-    position: relative;
-    padding: 16px 0;
-    border-bottom: 1px solid #e0e0e0;
-}
-.msg_type {
-    display: inline-block;
-    height: 20px;
-    line-height: 18px;
-    padding: 0 5px;
-    color: #4d4d4d;
-    font-size: 12px;
-    text-align: center;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    vertical-align: top;
-}
-.msg_info_box {
-    width: 79%;
-    color: #4d4d4d;
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    vertical-align: middle;
-}
-.msg_title {
-    display: inline-block;
-    width: 85%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    vertical-align: middle;
-}
-.options-f {
-    width: 16%;
-    height: 20px;
-    margin: 0;
-    margin-top: -20px;
-    padding: 0;
-}
-
-.msg_delete {
-    width: 10px;
-    height: 10px;
-    float: right;
-}
-.msg_content {
-    margin-top: 15px;
-    margin-bottom: -16px;
-    padding: 15px;
-    background-color: #f7f7f7;
-    font-size: 14px;
-    color: #4d4d4d;
-    line-height: 22px;
-}
-
-.page-box {
-    width: 100%;
-    margin: 32px 0 20px;
-    text-align: center;
-    border-top-color: initial;
-    border-right-color: initial;
-    border-bottom-color: initial;
-    border-left-color: initial;
-}
-</style>
