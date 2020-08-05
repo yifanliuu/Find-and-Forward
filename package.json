@@ -12,6 +12,7 @@
   },
   "main": "truffle-config.js",
   "dependencies": {
+    "@drizzle/vue-plugin": "^0.1.1",
     "@mdi/font": "^3.6.95",
     "openzeppelin-solidity": "^2.1.1",
     "roboto-fontface": "*",
