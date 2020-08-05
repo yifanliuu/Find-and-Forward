@@ -1,75 +1,12 @@
 <template>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="../css/msgList.css">
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-</head>
     <div class="home">
         <Default>
-            <div class="my_msg_list">
-    <div class="my_msg_list_view">
-        <div class="my_msg_list_box">
-            <div class="my_msg_list_con">
-                <div class="my_msg_list_title">
-                    <span >消息总数：</span><span>3</span>
-                    <a class="fr">清空所有消息</a>
-                    <span class="line fr"></span>
-                    <a class="fr">全部标记为已读</a>
-                </div>
-                <div class="msg_list"><!---->
-                    <ul class="msg_list_ul">
-                        <li class="msg_list_ul_li">
-                            <span class="msg_type ">系统</span>
-                            <span class="msg_info_box">
-                                <span class="msg_title">测试第一个消息</span>
-                            </span>
-                            <div class="fr options_info options-f">
-                                <a class="btn-rush csdnc-trash" style="float: right;">
-                                    
-                                </a>
-                                <em class="data-time" style="float: right;padding-right:10px">2019-03-28</em>
-                            </div>
-                            <div class="msg_content ">第一个测试发送消息的内容</div>
-                        </li>
-                        <li class="msg_list_ul_li">
-                            <span class="msg_type ">系统</span>
-                            <span class="msg_info_box">
-                                <span class="msg_title">第一个测试发送消息的内容</span>
-                            </span>
-                            <div class="fr options_info options-f">
-                                <a class="btn-rush csdnc-trash" style="float: right;">
-                                    
-                                </a>
-                                <em class="data-time" style="float: right;padding-right:10px">2019-03-28</em>
-                            </div>
-                            <div class="msg_content ">第一个测试发送消息的内容</div>
-                        </li>
-                        <li class="msg_list_ul_li">
-                            <span class="msg_type ">系统</span>
-                            <span class="msg_info_box">
-                                <span class="msg_title">测试第二个消息</span>
-                            </span>
-                            <div class="fr options_info options-f">
-                                <a class="btn-rush csdnc-trash" style="float: right;">
-                                    
-                                </a>
-                                <em class="data-time" style="float: right;padding-right:10px">2019-03-28</em>
-                            </div>
-                            <div class="msg_content ">第三个测试发送消息的内容</div>
-                        </li>
-                    </ul>
-                </div>
- 
-                <div class="page-box">
- 
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+            
+            <v-tab v-for="(item,idx) in messages" :key="(item,idx)">
+                <el-button type="text" @click="open(idx)">{{item}}</el-button>                         
+            </v-tab>
+                       
         </Default>
     </div>
 </template>
@@ -77,11 +14,47 @@
 <script>
 // @ is an alias to /src
 import Default from "../layout/default";
-
 export default {
     name: "Message",
     components: {
         Default,
     },
+    
+    data() {
+      return {
+        activeName: 'second',
+        messages:[
+            "message1",
+            "message2",
+            "message3"
+        ],
+        message_titles:[
+            "title1",
+            "title2",
+            "title3",
+        ],
+        message_contents:[
+            "here is message 1",
+            "here is message 2",
+            "here is message 3",
+        ],
+       };
+    },
+    methods: {
+      handleClick(tab, event) {
+        console.log(tab, event);
+      },
+      open(index) {
+        this.$alert(this.message_contents[index], this.message_titles[index], {
+          confirmButtonText: '确定',
+          /*callback: action => {
+            this.$message({
+              type: 'info',
+              message: `action: ${ action }`
+            });
+          }*/
+        });
+      },
+    }
 };
 </script>
