@@ -17,14 +17,33 @@
                     color="dark"
                     grow
                 >
-                    <v-tab v-for="item in items" :key="item">
-                        {{ item }}
+                    <v-tab v-for="(item, idx) in items" :key="(item, idx)">
+                        <a
+                            :class="{
+                                'nav-link': true,
+                                active: idx === activeIndex,
+                            }"
+                            @click="changeIdx(idx)"
+                            >{{ item }}</a
+                        >
                     </v-tab>
                 </v-tabs>
 
                 <v-tabs-items v-model="tab">
                     <v-tab-item v-for="item in items" :key="item">
                         <v-card color="dark" flat>
+                            <v-card-text>
+                                <div
+                                    v-for="(content, idx) in contents"
+                                    :key="(content, idx)"
+                                >
+                                    <div v-show="idx === activeIndex">
+                                        {{ content }}
+                                    </div>
+                                </div>
+                            </v-card-text>
+                            <v-card-text>{{ newline }}</v-card-text>
+
                             <v-card-text>{{ text }}</v-card-text>
                         </v-card>
                     </v-tab-item>
@@ -113,6 +132,13 @@ export default {
             show_login: true, //是否显示登陆页面，否则显示注册页面
             tab: null,
             items: ["我的任务", "我的贡献", "我的奖励", "我的余额"],
+            contents: [
+                "here is my task",
+                "here is my contribution",
+                "here is my reward",
+                "here is my left money",
+            ],
+            newline: "\n",
             text:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             username: "yifan",
@@ -201,6 +227,9 @@ export default {
                     msg: "登陆成功",
                 });
             }
+        },
+        changeIdx: function(idx) {
+            this.activeIndex = idx;
         },
     },
 };
