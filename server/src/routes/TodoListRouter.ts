@@ -28,6 +28,6 @@ TodoListRouter["post"]("/invite",InsertMessage);
 TodoListRouter["get"]("/task/content",GetMovieByMovie);
 TodoListRouter["get"]("/task/admin/contrib",GetAllUserContribByTask);
 TodoListRouter["post"]("/task/admin/reward",RewardForwarding);
-//TodoListRouter["patch"]("/task/content",UpdateMovie);
+TodoListRouter["patch"]("/task/content",UpdateMovie);
 
 export default TodoListRouter
