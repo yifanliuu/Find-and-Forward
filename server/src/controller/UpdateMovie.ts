@@ -1,0 +1,85 @@
+import {Context} from "koa";
+import {getManager} from "typeorm";
+import {Message} from "../entity/Message";
+import {Contrib} from "../entity/Contrib";
+import {Movie} from "../entity/Movie";
+
+export async function UpdateMovie(context: Context) {
+    //get message repository
+    const MovieRepo = getManager().getRepository(Movie);
+    const MessageRepo = getManager().getRepository(Message);
+    const ContribRepo = getManager().getRepository(Contrib);
+
+    //get context content
+    const {subtask_list} = context.request.body;
+    var subtask : any;
+    for (var i=0;i<subtask_list.length;i++) {
+        subtask=subtask_list[i];
+        const subtask_id = subtask["subtask_id"];
+        const task_id = subtask["task_id"];
+        const user_id = subtask["user_id"];
+        const result = subtask["result"];
+        //update movie
+        const Movie = await MovieRepo.findOne({subtask_id : subtask_id});
+        await MovieRepo.update(Movie, {user_id : user_id, result : result});
+        
+        const Contrib_user = await ContribRepo.findOne({task_id : task_id, user_id : user_id});
+        //update user work_contrib
+        await ContribRepo.update(Contrib_user, {work_contrib : Contrib_user.work_contrib + 1});
+        //update user total_contrib
+        await ContribRepo.update(Contrib_user, {total_contrib : Contrib_user.work_contrib + Contrib_user.invite_contrib});
+        //update user reward
+        await ContribRepo.update(Contrib_user, {reward : Contrib_user.reward + 2 * Contrib_user.work_contrib - 1});
+
+
+        //find invitor
+        /*const Message = await MessageRepo.findOne({task_id : task_id, invitee_id : user_id, result:1});
+        if(Message!=null){
+  
+        const Contrib_invitor = await ContribRepo.findOne({task_id : task_id, user_id : Message.invitor_id});
+        //update invitor invite_contrib 
+        var min_before_contrib : any;
+        if (Contrib_user.work_contrib - 1 < Contrib_invitor.work_contrib) 
+            min_before_contrib = Contrib_user.work_contrib - 1;
+        else
+            min_before_contrib = Contrib_invitor.work_contrib;
+        var min_now_contrib : any;
+        if (Contrib_user.work_contrib < Contrib_invitor.work_contrib) 
+            min_now_contrib = Contrib_user.work_contrib
+        else
+            min_now_contrib = Contrib_invitor.work_contrib
+        //update invitor invite_contrib
+        await ContribRepo.update(Contrib_invitor, {invite_contrib :Contrib_invitor.invite_contrib - min_before_contrib + min_now_contrib});
+        //update invitor total_contrib
+        await ContribRepo.update(Contrib_invitor, {total_contrib : Contrib_invitor.work_contrib + Contrib_invitor.invite_contrib});
+        //update invitor reward
+        await ContribRepo.update(Contrib_invitor, {reward : Contrib_invitor.reward - min_before_contrib + min_now_contrib});
+        }*/
+
+        //find invitee
+        /*const Message_list = await MessageRepo.find({task_id : task_id, invitor_id : user_id, result : 1});
+        for (var j=0;j<Message_list.length;j++) {
+            const one_message = Message_list[j];
+            const Contrib_invitee = await ContribRepo.findOne({task_id : task_id, user_id : one_message.invitee_id});
+            //update user invite_contrib 
+            var min_before_contrib : any;
+            if (Contrib_user.work_contrib - 1 < Contrib_invitee.work_contrib) 
+                min_before_contrib = Contrib_user.work_contrib - 1;
+            else
+                min_before_contrib = Contrib_invitee.work_contrib;
+            var min_now_contrib : any;
+            if (Contrib_user.work_contrib < Contrib_invitee.work_contrib) 
+                min_now_contrib = Contrib_user.work_contrib;
+            else
+                min_now_contrib = Contrib_invitee.work_contrib;
+            //update user invite_contrib
+            await ContribRepo.update(Contrib_user, {invite_contrib : Contrib_user.invite_contrib - min_before_contrib + min_now_contrib});
+            //update user total_contrib
+            await ContribRepo.update(Contrib_user, {total_contrib : Contrib_user.work_contrib + Contrib_user.invite_contrib});
+            //update user reward
+            await ContribRepo.update(Contrib_user, {reward : Contrib_user.reward - min_before_contrib + min_now_contrib});
+        }*/
+    }
+    /*context.body = {"payload" : {}};
+    context.body["payload"] = {"success" : true};*/
+}
