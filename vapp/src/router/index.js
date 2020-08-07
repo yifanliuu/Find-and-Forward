@@ -1,10 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Profile from '../views/Profile.vue'
-import Message from '../views/Message.vue'
-import Work from '../views/Work.vue'
-import Detail from '../views/Detail.vue'
 
 
 Vue.use(VueRouter)
@@ -26,23 +22,28 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    component: Profile
+    component: () => import('../views/Profile.vue')
   },
   {
     path: '/message',
     name: 'Message',
-    component: Message
+    component: () => import('../views/Message.vue')
   },
   {
     path: '/work',
     name: 'Work',
-    component: Work
+    component: () => import('../views/Work.vue')
+  },
+  {
+    path: "/invite",
+    name: "Invite",
+    component: () => import('../views/Invite.vue')
   },
   {
     path: "/:id",
     name: "Detail",
-    component: Detail
-  }
+    component: () => import('../views/Detail.vue')
+  },
 ]
 
 const router = new VueRouter({
