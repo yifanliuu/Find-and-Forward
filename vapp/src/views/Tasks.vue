@@ -1,25 +1,27 @@
 <template>
-  <div class="pa-3">
+  <div>
     <Default>
-      <v-row v-if="is_login">
-        <v-col md="4" v-for="item in tasks" :key="item.id">
-          <v-card class="mx-auto" max-width="344" shaped>
-            <v-img :src="item.photo_path" height="200px"></v-img>
+      <v-card v-if="is_login" class="fill-height" color="red lighten-2" width="7000" shaped>
+        <v-row class="pl-3">
+          <v-col md="4" v-for="item in tasks" :key="item.id">
+            <v-card class="mx-auto" max-width="344" light shaped>
+              <v-img src="../assets/logo.png" height="200px"></v-img>
 
-            <v-card-title>{{ item.title }}</v-card-title>
+              <v-card-title>{{ item.title }}</v-card-title>
 
-            <v-card-subtitle>{{ item.summary }}</v-card-subtitle>
+              <v-card-subtitle>{{ item.summary }}</v-card-subtitle>
 
-            <v-card-actions>
-              <v-btn text to="/invite">Share</v-btn>
+              <v-card-actions>
+                <v-btn text to="/invite">Share</v-btn>
 
-              <v-btn color="primary" :to="`/tasks/${item.id}`">Explore</v-btn>
+                <v-btn color="primary" :to="`/tasks/${item.id}`">Explore</v-btn>
 
-              <v-spacer></v-spacer>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-      </v-row>
+                <v-spacer></v-spacer>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-card>
       <Login v-else></Login>
     </Default>
   </div>

@@ -13,8 +13,7 @@ export async function getTaskByUser(context: Context) {
     //let's say admin id is 9
     if (uid == 9) {
         const tasks = await TaskRepo.find();
-        const tasklist = { task_list: tasks };
-        context.body = { payload: tasklist };
+        context.body = { payload: tasks };
         return;
     }
     const ContribRepo = getManager().getRepository(Contrib);

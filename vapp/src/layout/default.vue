@@ -45,7 +45,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app clipped-left>
+    <v-app-bar app clipped-left color="red darken-4" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>发现♥ Forward</v-toolbar-title>
     </v-app-bar>
@@ -56,7 +56,7 @@
       </v-container>
     </v-main>
 
-    <v-footer app>
+    <v-footer app color="red darken-4" dark>
       <span>
         {{ new Date().getFullYear() }}&copy;1GUO3LIU. All CopyRight
         Reserved.

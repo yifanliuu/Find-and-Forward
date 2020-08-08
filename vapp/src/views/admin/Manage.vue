@@ -98,7 +98,7 @@ export default {
       },
     });
     //console.log(res.data.payload);
-    this.tasks = res_task.data.payload.task_list;
+    this.tasks = res_task.data.payload;
     this.initiallized = true;
   },
 

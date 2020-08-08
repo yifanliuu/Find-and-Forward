@@ -1,68 +1,66 @@
 <template>
-  <v-card class="fill-height" width="7000" shaped>
-    <v-card v-if="is_login" class="fill-height" width="7000" shaped>
-      <v-card color="red lighten-2" dark>
-        <v-card-title class="headline red lighten-3">搜索任务以邀请好友</v-card-title>
-        <v-card-text>
-          <v-autocomplete
-            v-model="model"
-            :items="tasks"
-            :search-input.sync="search"
-            color="white"
-            hide-no-data
-            hide-selected
-            item-text="title"
-            item-value="id"
-            label="Tasks"
-            placeholder="Start typing to Search"
-            prepend-icon="mdi-database-search"
-            return-object
-          ></v-autocomplete>
-        </v-card-text>
-        <v-divider></v-divider>
-        <v-expand-transition>
-          <v-list v-if="model" class="red lighten-3" rounded>
-            <v-subheader>
+  <v-card v-if="is_login" class="fill-height" width="7000" color="red lighten-2" shaped>
+    <v-card color="red lighten-2" dark>
+      <v-card-title class="headline red lighten-3">搜索任务以邀请好友</v-card-title>
+      <v-card-text>
+        <v-autocomplete
+          v-model="model"
+          :items="tasks"
+          :search-input.sync="search"
+          color="white"
+          hide-no-data
+          hide-selected
+          item-text="title"
+          item-value="id"
+          label="Tasks"
+          placeholder="Start typing to Search"
+          prepend-icon="mdi-database-search"
+          return-object
+        ></v-autocomplete>
+      </v-card-text>
+      <v-divider></v-divider>
+      <v-expand-transition>
+        <v-list v-if="model" light rounded>
+          <v-subheader>
+            <v-list-item-icon>
+              <v-icon></v-icon>
+            </v-list-item-icon>
+            <v-row>
+              <v-col>好友</v-col>
+              <v-col>邀请状态</v-col>
+            </v-row>
+          </v-subheader>
+          <v-list-item-group v-model="item" color="red lighten-2">
+            <v-list-item v-for="item in friends" :key="item.id">
               <v-list-item-icon>
-                <v-icon></v-icon>
+                <v-icon v-text="icon"></v-icon>
               </v-list-item-icon>
-              <v-row>
-                <v-col>好友</v-col>
-                <v-col>邀请状态</v-col>
-              </v-row>
-            </v-subheader>
-            <v-list-item-group v-model="item" color="primary">
-              <v-list-item v-for="item in friends" :key="item.id">
-                <v-list-item-icon>
-                  <v-icon v-text="icon"></v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-row>
-                    <v-col>{{item.name}}</v-col>
-                    <v-col v-if="item.status === 1">
-                      <v-chip color="primary" @click="invite(item.id)" small>
-                        <v-icon left>mdi-plus</v-icon>邀请
-                      </v-chip>
-                    </v-col>
-                    <v-col v-else>
-                      <v-chip small>
-                        <v-icon left>mdi-close</v-icon>不可邀请
-                      </v-chip>
-                    </v-col>
-                  </v-row>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list-item-group>
-          </v-list>
-        </v-expand-transition>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn :disabled="!model" color="grey darken-3" @click="model = null">
-            Clear
-            <v-icon right>mdi-close-circle</v-icon>
-          </v-btn>
-        </v-card-actions>
-      </v-card>
+              <v-list-item-content>
+                <v-row>
+                  <v-col>{{item.name}}</v-col>
+                  <v-col v-if="item.status === 1">
+                    <v-chip color="primary" @click="invite(item.id)" small>
+                      <v-icon left>mdi-plus</v-icon>邀请
+                    </v-chip>
+                  </v-col>
+                  <v-col v-else>
+                    <v-chip small>
+                      <v-icon left>mdi-close</v-icon>不可邀请
+                    </v-chip>
+                  </v-col>
+                </v-row>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-expand-transition>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn :disabled="!model" color="grey darken-3" @click="model = null">
+          Clear
+          <v-icon right>mdi-close-circle</v-icon>
+        </v-btn>
+      </v-card-actions>
     </v-card>
   </v-card>
 </template>
