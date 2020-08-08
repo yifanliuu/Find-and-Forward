@@ -1,7 +1,7 @@
 <template>
   <div class="manage">
     <Admin>
-      <v-card v-if="is_login" class="fill-height" width="7000" shaped>
+      <v-card v-if="is_login" color="red lighten-2" class="fill-height" width="7000" shaped>
         <v-card color="red lighten-2" dark>
           <v-card-title class="headline red lighten-3">搜索任务以获得管理信息</v-card-title>
           <v-card-text>
