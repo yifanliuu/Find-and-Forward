@@ -7,8 +7,11 @@ import store from './store'
 //import drizzleOptions from './drizzleOptions'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import axios from 'axios';
 
 Vue.config.productionTip = false;
+Vue.prototype.$axios = axios;
+Vue.prototype.HOST = '/api';
 
 Vue.use(ElementUI)
 // Register the drizzleVuePlugin

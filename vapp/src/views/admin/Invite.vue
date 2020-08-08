@@ -1,32 +1,33 @@
 <template>
   <div class="invite">
-    <Default>
+    <Admin>
       <Friends v-if="is_login"></Friends>
       <Login v-else></Login>
-    </Default>
+    </Admin>
   </div>
 </template>
 
 <script>
-import Default from "../layout/default";
-import Friends from "../components/Friends";
-import Login from "../components/Login";
+import Admin from "../../layout/admin";
+import Friends from "../../components/Friends";
+import Login from "../../components/Login";
 import { mapState } from "vuex";
 
 export default {
-  name: "Invite",
+  name: "AdminInvite",
   components: {
-    Default,
+    Admin,
     Friends,
     Login,
   },
 
   data() {
-    return {};
+    return {
+      input: "",
+    };
   },
   computed: {
     ...mapState(["username", "user_id", "address", "balance", "is_login"]),
   },
-  methods: {},
 };
 </script>
