@@ -45,12 +45,14 @@
                           <v-radio
                             label="Positive"
                             color="red lighten-2"
+                            :disabled="disabled"
                             :value="`pos_${item.subtask_id}`"
                             @click="save_pos(item.subtask_id)"
                           ></v-radio>
                           <v-radio
                             label="Negative"
                             color="red lighten-2"
+                            :disabled="disabled"
                             :value="`neg_${item.subtask_id}`"
                             @click="save_neg(item.subtask_id)"
                           ></v-radio>
@@ -63,14 +65,18 @@
             </v-list>
           </v-expand-transition>
           <v-card-actions>
+            <v-btn :disabled="!model" color="grey darken-2" @click="update()">
+              Change
+              <v-icon right>mdi-flag</v-icon>
+            </v-btn>
             <v-spacer></v-spacer>
-            <v-btn :disabled="!model" color="grey darken-3" @click="model = null">
+            <v-btn :disabled="!model" color="grey darken-2" @click="model = null">
               Clear
               <v-icon right>mdi-close-circle</v-icon>
             </v-btn>
-            <v-btn :disabled="!model" color="grey darken-3" @click="submit()">
+            <v-btn :disabled="!model" color="grey darken-2" @click="submit()">
               Submit
-              <v-icon right>mdi-close-circle</v-icon>
+              <v-icon right>mdi-cloud-upload</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -104,6 +110,7 @@ export default {
       search: null,
       initiallized: false,
       items: null,
+      disabled: false,
     };
   },
   computed: {
@@ -134,7 +141,7 @@ export default {
       //console.log(task_id);
       const res = await this.$axios.get("/api/task/content", {
         params: {
-          subtask_num: 8,
+          subtask_num: 5,
         },
       });
       console.log(res.data.payload);
@@ -149,6 +156,24 @@ export default {
     },
   },
   methods: {
+    async update() {
+      this.contents = [];
+      this.disabled = false;
+      const res = await this.$axios.get("/api/task/content", {
+        params: {
+          subtask_num: 5,
+        },
+      });
+      console.log(res.data.payload);
+      res.data.payload.forEach((item) => {
+        const a = {
+          subtask_id: item.subtask_id,
+          content: item.content,
+          result: null,
+        };
+        this.contents.push(a);
+      });
+    },
     save_pos(id) {
       for (let index = 0; index < this.contents.length; index++) {
         if (this.contents[index].subtask_id == id) {
@@ -187,7 +212,7 @@ export default {
             if (res.status != 200) {
               success = false;
             }
-            console.log(item.subtask_id + "," + res.data);
+            console.log(success);
           }
 
           if (!success) {
@@ -200,7 +225,7 @@ export default {
               type: "success",
               message: "提交成功!",
             });
-            this.update();
+            this.disabled = true;
           }
         })
         .catch(() => {

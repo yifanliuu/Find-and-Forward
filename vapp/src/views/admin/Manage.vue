@@ -22,7 +22,7 @@
           </v-card-text>
           <v-divider></v-divider>
           <v-expand-transition>
-            <v-list v-if="model" class="red lighten-3" rounded>
+            <v-list v-if="model" light rounded>
               <v-subheader>
                 <v-list-item-icon>
                   <v-icon></v-icon>
@@ -33,7 +33,7 @@
                   <v-col>邀请贡献</v-col>
                 </v-row>
               </v-subheader>
-              <v-list-item-group v-model="item" color="primary">
+              <v-list-item-group v-model="item" color="red lighten-2">
                 <v-list-item v-for="item in manages" :key="item.user_id">
                   <v-list-item-icon>
                     <v-icon v-text="icon"></v-icon>
@@ -77,6 +77,7 @@ export default {
 
   data() {
     return {
+      icon: "mdi-account",
       item: null,
       manages: [],
       descriptionLimit: 60,

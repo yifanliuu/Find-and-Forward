@@ -2,7 +2,7 @@
   <div>
     <Default>
       <v-card v-if="is_login" class="fill-height" color="red lighten-2" width="7000" shaped>
-        <v-row class="pl-3">
+        <v-row class="pl-3 pr-3">
           <v-col md="4" v-for="item in tasks" :key="item.id">
             <v-card class="mx-auto" max-width="344" light shaped>
               <v-img src="../assets/logo.png" height="200px"></v-img>
@@ -14,7 +14,7 @@
               <v-card-actions>
                 <v-btn text to="/invite">Share</v-btn>
 
-                <v-btn color="primary" :to="`/tasks/${item.id}`">Explore</v-btn>
+                <v-btn color="red lighten-3" :to="`/tasks/${item.id}` " dark>Explore</v-btn>
 
                 <v-spacer></v-spacer>
               </v-card-actions>

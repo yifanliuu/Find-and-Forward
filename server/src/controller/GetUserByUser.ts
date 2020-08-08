@@ -18,7 +18,7 @@ export async function getUserByUser(context: Context) {
         password: password,
     });
     if (userinfo == undefined) {
-        context.status = 404;
+        context.body = 404;
         return;
     }
     user["user_id"] = userinfo.user_id;

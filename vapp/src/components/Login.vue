@@ -2,7 +2,7 @@
   <v-row align="center" justify="center">
     <v-col cols="12" sm="8" md="4">
       <v-card v-if="show_login" class="elevation-12">
-        <v-toolbar color="primary" dark flat>
+        <v-toolbar color="red darken-4" dark flat>
           <v-toolbar-title>Login</v-toolbar-title>
           <v-spacer></v-spacer>
         </v-toolbar>
@@ -19,8 +19,8 @@
             <v-text-field
               label="Password"
               name="Password"
-              prepend-icon="mdi-account"
-              type="text"
+              prepend-icon="mdi-lock"
+              type="password"
               v-model="password"
             ></v-text-field>
           </v-form>
@@ -28,7 +28,7 @@
         <v-card-actions>
           <v-btn @click="change_show_login()">No Account? Sign up</v-btn>
           <v-spacer></v-spacer>
-          <v-btn @click="login()" color="primary">Login</v-btn>
+          <v-btn @click="login()" color="red darken-4" dark>Login</v-btn>
         </v-card-actions>
       </v-card>
       <v-card v-else class="elevation-12">
@@ -82,7 +82,7 @@ export default {
         },
       });
       //console.log(res.data.payload);
-      if (res.status == 404) {
+      if (res.data == 404) {
         this.$message({
           type: "error",
           message: "登陆失败",

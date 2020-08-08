@@ -12,7 +12,7 @@
         </v-list-item>
         <v-list-item link to="/profile">
           <v-list-item-action>
-            <v-icon>mdi-cog</v-icon>
+            <v-icon>mdi-account-circle</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>个人中心</v-list-item-title>
@@ -20,7 +20,7 @@
         </v-list-item>
         <v-list-item link to="/message">
           <v-list-item-action>
-            <v-icon>mdi-cog</v-icon>
+            <v-icon>mdi-mail</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>我的消息</v-list-item-title>
@@ -36,7 +36,7 @@
         </v-list-item>
         <v-list-item link to="/invite">
           <v-list-item-action>
-            <v-icon>mdi-cog</v-icon>
+            <v-icon>mdi-plus-circle</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>邀请好友</v-list-item-title>

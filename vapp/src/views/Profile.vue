@@ -37,7 +37,7 @@
 <script>
 // @ is an alias to /src
 import Default from "../layout/default";
-import { mapGetters, mapState } from "vuex";
+import { mapState } from "vuex";
 import MyContribution from "../components/MyContribution";
 import MyReward from "../components/MyReward";
 import MyBalance from "../components/MyBalance";
@@ -53,8 +53,6 @@ export default {
     Login,
   },
   computed: {
-    ...mapGetters("drizzle", ["isDrizzleInitialized"]),
-    ...mapGetters("accounts", ["activeAccount", "activeBalance"]),
     ...mapState(["username", "user_id", "address", "balance", "is_login"]),
   },
   data() {
