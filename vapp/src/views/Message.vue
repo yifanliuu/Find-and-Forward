@@ -23,12 +23,14 @@
                 <v-list-item-content>
                   <v-row>
                     <v-col md="2">{{ item.invitor_name }}</v-col>
-                    <v-col>{{ item.task_title }}</v-col>
+                    <v-col>
+                      <p :to="`/tasks/${item.id}` ">{{ item.task_title }}</p>
+                    </v-col>
                     <v-col md="3" v-if="item.result === 0">
                       <v-row dense>
                         <v-col>
                           <v-chip color="success" @click="accept(item.invite_id)" small>
-                            <v-icon left>mdi-right</v-icon>接受
+                            <v-icon left>mdi-plus</v-icon>接受
                           </v-chip>
                         </v-col>
                         <v-col>

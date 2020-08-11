@@ -9,6 +9,7 @@
           <v-col>任务</v-col>
           <v-col>截止时间</v-col>
           <v-col>奖励</v-col>
+          <v-col>发放状态</v-col>
         </v-row>
       </v-subheader>
       <v-list-item-group v-model="item" color="red lighten-2">
@@ -21,6 +22,10 @@
               <v-col>{{ item.task_title }}</v-col>
               <v-col>{{ item.deadline }}</v-col>
               <v-col>{{ item.reward }}</v-col>
+              <v-col>
+                <v-btn v-if="item.is_given_reward" dark>已发放</v-btn>
+                <v-btn v-else color="red lighten-2" dark>未发放</v-btn>
+              </v-col>
             </v-row>
           </v-list-item-content>
         </v-list-item>

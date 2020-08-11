@@ -23,6 +23,8 @@ export async function GetAllUserContribByTask(context: Context) {
             arrayList[j]["username"] = user.username;
             arrayList[j]["work_contrib"] = contrib.work_contrib;
             arrayList[j]["invite_contrib"] = contrib.invite_contrib;
+            arrayList[j]["reward"] = contrib.reward;
+            arrayList[j]["is_given_reward"] = contrib.is_given_reward;
         }
         context.body["payload"] = arrayList;
     } catch {

@@ -31,6 +31,8 @@
                   <v-col>参与用户</v-col>
                   <v-col>工作贡献</v-col>
                   <v-col>邀请贡献</v-col>
+                  <v-col>应得奖励</v-col>
+                  <v-col>操作</v-col>
                 </v-row>
               </v-subheader>
               <v-list-item-group v-model="item" color="red lighten-2">
@@ -43,6 +45,11 @@
                       <v-col>{{item.username}}</v-col>
                       <v-col>{{item.work_contrib}}</v-col>
                       <v-col>{{item.invite_contrib}}</v-col>
+                      <v-col>{{item.reward}}</v-col>
+                      <v-col>
+                        <v-btn v-if="item.is_given_reward" color="grey darken-3" dark>已发放</v-btn>
+                        <v-btn v-else color="red lighten-2" @click="give_reward()" dark>发放奖励</v-btn>
+                      </v-col>
                     </v-row>
                   </v-list-item-content>
                 </v-list-item>
@@ -123,6 +130,39 @@ export default {
       this.manages = res.data.payload;
     },
   },
-  methods: {},
+  methods: {
+    async give_reward() {
+      this.$confirm("此操作将发送奖励, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(async () => {
+          const res = await this.$axios.post("/api/task/admin/reward", {
+            admin_id: this.user_id,
+            task_id: this.model.id,
+          });
+          console.log(res);
+          if (res.status == 404) {
+            this.$message({
+              type: "error",
+              message: "奖励发放失败!",
+            });
+          } else {
+            this.$message({
+              type: "success",
+              message: "奖励发放成功!",
+            });
+            this.update();
+          }
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消发放奖励",
+          });
+        });
+    },
+  },
 };
 </script>
