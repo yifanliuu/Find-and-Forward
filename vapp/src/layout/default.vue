@@ -42,6 +42,22 @@
             <v-list-item-title>邀请好友</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item link to="/manage">
+          <v-list-item-action>
+            <v-icon>mdi-cog</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>任务管理</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link to="/create">
+          <v-list-item-action>
+            <v-icon>mdi-cog</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>任务创建</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
 

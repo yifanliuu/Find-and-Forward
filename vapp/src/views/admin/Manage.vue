@@ -1,6 +1,6 @@
 <template>
   <div class="manage">
-    <Admin>
+    <Default>
       <v-card v-if="is_login" color="red lighten-2" class="fill-height" width="7000" shaped>
         <v-card color="red lighten-2" dark>
           <v-card-title class="headline red lighten-3">搜索任务以获得管理信息</v-card-title>
@@ -48,7 +48,7 @@
                       <v-col>{{item.reward}}</v-col>
                       <v-col>
                         <v-btn v-if="item.is_given_reward" color="grey darken-3" dark>已发放</v-btn>
-                        <v-btn v-else color="red lighten-2" @click="give_reward()" dark>发放奖励</v-btn>
+                        <v-btn v-else color="red lighten-2" dark>未发放</v-btn>
                       </v-col>
                     </v-row>
                   </v-list-item-content>
@@ -66,19 +66,19 @@
         </v-card>
       </v-card>
       <Login v-else></Login>
-    </Admin>
+    </Default>
   </div>
 </template>
 
 <script>
-import Admin from "../../layout/admin";
+import Default from "../../layout/default";
 import Login from "../../components/Login";
 import { mapState } from "vuex";
 
 export default {
   name: "AdminManage",
   components: {
-    Admin,
+    Default,
     Login,
   },
 

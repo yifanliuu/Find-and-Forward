@@ -16,6 +16,8 @@ import { UpdateMovie } from "../controller/UpdateMovie";
 const NewRouter = new Router();
 
 NewRouter["get"]("/task", getTaskByUser);
+NewRouter["get"]("/task/create");
+NewRouter["post"]("/task/create");
 NewRouter["get"]("/task/detail/:id", getTaskByTask);
 NewRouter["get"]("/contrib", getContribByUser);
 NewRouter["get"]("/reward", getRewardByUser);

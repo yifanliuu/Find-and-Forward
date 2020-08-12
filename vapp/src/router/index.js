@@ -38,7 +38,7 @@ const routes = [
     component: () => import('../views/admin/Tasks.vue')
   },
   {
-    path: "/admin/manage",
+    path: "/manage",
     name: "AdminManage",
     component: () => import('../views/admin/Manage.vue')
   },
@@ -61,6 +61,11 @@ const routes = [
     path: "/invite",
     name: "Invite",
     component: () => import('../views/Invite.vue')
+  },
+  {
+    path: "/create",
+    name: "Create",
+    component: () => import('../views/Create.vue')
   },
   {
     path: "/tasks/:id",

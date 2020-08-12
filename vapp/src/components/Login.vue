@@ -102,11 +102,8 @@ export default {
         this.$store.dispatch("setAddress", address);
         this.$store.dispatch("setBalance", balance);
         this.$store.dispatch("setIsLogin", true);
-        if (user_id == 9) {
-          this.$router.push("/admin/tasks");
-        } else {
-          this.$router.push("/tasks");
-        }
+
+        this.$router.push("/tasks");
       }
     },
   },
