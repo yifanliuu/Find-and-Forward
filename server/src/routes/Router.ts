@@ -1,5 +1,7 @@
 import * as Router from "koa-router";
 import { getTaskByUser } from "../controller/GetTaskByUser";
+import { getTaskByCreator } from "../controller/GetTaskByCreator";
+import { InsertTask } from "../controller/InsertTask";
 import { getTaskByTask } from "../controller/GetTaskByTask";
 import { getContribByUser } from "../controller/GetContribByUser";
 import { getRewardByUser } from "../controller/GetRewardByUser";
@@ -16,8 +18,8 @@ import { UpdateMovie } from "../controller/UpdateMovie";
 const NewRouter = new Router();
 
 NewRouter["get"]("/task", getTaskByUser);
-NewRouter["get"]("/task/create");
-NewRouter["post"]("/task/create");
+NewRouter["get"]("/task/create", getTaskByCreator);
+NewRouter["post"]("/task/create", InsertTask);
 NewRouter["get"]("/task/detail/:id", getTaskByTask);
 NewRouter["get"]("/contrib", getContribByUser);
 NewRouter["get"]("/reward", getRewardByUser);

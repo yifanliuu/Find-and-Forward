@@ -6,10 +6,8 @@ export async function GetMovieByMovie(context: Context) {
     //get a repository
     const MovieRepo = getManager().getRepository(Movie);
     //get context content
-
-    const { subtask_num } = context.request.query;
-    const unjudged_movie = await MovieRepo.find({ user_id: -1 });
-
+    const { subtask_num, task_id } = context.request.query;
+    const unjudged_movie = await MovieRepo.find({ user_id: -1, task_id : task_id });
     //find the unjudge_movie
     context.body = { payload: "" };
 
