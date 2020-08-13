@@ -1,28 +1,32 @@
 <template>
-  <div>
+  <div class="invite">
     <Default>
-      <Login></Login>
+      <Friends v-if="is_login"></Friends>
+      <Login v-else></Login>
     </Default>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import Default from "../layout/default";
+import Friends from "../components/Friends";
 import Login from "../components/Login";
 import { mapState } from "vuex";
 
 export default {
-  name: "Tasks",
+  name: "Invite",
   components: {
     Default,
+    Friends,
     Login,
   },
+
   data() {
     return {};
   },
   computed: {
     ...mapState(["username", "user_id", "address", "balance", "is_login"]),
   },
+  methods: {},
 };
 </script>

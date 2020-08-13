@@ -2,52 +2,8 @@
   <div class="home">
     <Default>
       <v-card v-if="is_login" class="fill-height" width="7000" color="red lighten-2" dark shaped>
-        <v-card-title class="headline red lighten-3">我的消息</v-card-title>
-        <v-card light shaped>
-          <v-list rounded>
-            <v-subheader>
-              <v-list-item-icon>
-                <v-icon></v-icon>
-              </v-list-item-icon>
-              <v-row>
-                <v-col md="2">邀请人</v-col>
-                <v-col>任务</v-col>
-                <v-col md="3">邀请状态</v-col>
-              </v-row>
-            </v-subheader>
-            <v-list-item-group v-model="item" color="red lighten-2">
-              <v-list-item v-for="item in messages" :key="item.invite_id">
-                <v-list-item-icon>
-                  <v-icon v-text="icon"></v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-row>
-                    <v-col md="2">{{ item.invitor_name }}</v-col>
-                    <v-col>
-                      <p :to="`/tasks/${item.id}` ">{{ item.task_title }}</p>
-                    </v-col>
-                    <v-col md="3" v-if="item.result === 0">
-                      <v-row dense>
-                        <v-col>
-                          <v-chip color="success" @click="accept(item.invite_id)" small>
-                            <v-icon left>mdi-plus</v-icon>接受
-                          </v-chip>
-                        </v-col>
-                        <v-col>
-                          <v-chip color="error" @click="reject(item.invite_id)" small>
-                            <v-icon left>mdi-close</v-icon>拒绝
-                          </v-chip>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-                    <v-col md="3" v-if="item.result === 1">已接受</v-col>
-                    <v-col md="3" v-if="item.result === 2">已拒绝</v-col>
-                  </v-row>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list-item-group>
-          </v-list>
-        </v-card>
+        <v-card-title class="headline red lighten-3">创建任务</v-card-title>
+        <v-card light shaped></v-card>
       </v-card>
       <Login v-else></Login>
     </Default>
@@ -61,7 +17,7 @@ import Login from "../components/Login";
 import { mapState } from "vuex";
 
 export default {
-  name: "Message",
+  name: "Create",
   components: {
     Default,
     Login,
