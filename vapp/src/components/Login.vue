@@ -3,22 +3,22 @@
     <v-col cols="12" sm="8" md="4">
       <v-card v-if="show_login" class="elevation-12">
         <v-toolbar color="red darken-4" dark flat>
-          <v-toolbar-title>Login</v-toolbar-title>
+          <v-toolbar-title>登录</v-toolbar-title>
           <v-spacer></v-spacer>
         </v-toolbar>
-        <v-card-text>Give us your user name to check your address.</v-card-text>
+        <v-card-text>使用用户名和密码进行登录</v-card-text>
         <v-card-text>
           <v-form>
             <v-text-field
-              label="User Name"
-              name="username"
+              label="用户名"
+              name="用户名"
               prepend-icon="mdi-account"
               type="text"
               v-model="user_name"
             ></v-text-field>
             <v-text-field
-              label="Password"
-              name="Password"
+              label="密码"
+              name="密码"
               prepend-icon="mdi-lock"
               type="password"
               v-model="password"
@@ -26,17 +26,17 @@
           </v-form>
         </v-card-text>
         <v-card-actions>
-          <v-btn @click="change_show_login()">No Account? Sign up</v-btn>
+          <v-btn @click="change_show_login()">没有帐户? 注册</v-btn>
           <v-spacer></v-spacer>
-          <v-btn @click="login()" color="red darken-4" dark>Login</v-btn>
+          <v-btn @click="login()" color="red darken-4" dark>登录</v-btn>
         </v-card-actions>
       </v-card>
       <v-card v-else class="elevation-12">
         <v-toolbar light flat>
-          <v-toolbar-title>Sign Up</v-toolbar-title>
+          <v-toolbar-title>注册</v-toolbar-title>
           <v-spacer></v-spacer>
         </v-toolbar>
-        <v-card-text>Give us your user name to sign up.</v-card-text>
+        <v-card-text>进行注册</v-card-text>
         <v-card-text>
           <v-form>
             <v-text-field label="User Name" name="User Name" prepend-icon="mdi-account" type="text"></v-text-field>
@@ -44,9 +44,9 @@
           </v-form>
         </v-card-text>
         <v-card-actions>
-          <v-btn @click="change_show_login()">Have Account? Login</v-btn>
+          <v-btn @click="change_show_login()">已有账号? 登录</v-btn>
           <v-spacer></v-spacer>
-          <v-btn @click="signup()" light>Sign Up</v-btn>
+          <v-btn @click="signup()" light>注册</v-btn>
         </v-card-actions>
       </v-card>
     </v-col>

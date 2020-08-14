@@ -15,7 +15,7 @@
 
           <v-col class="pr-12">
             <v-card flat width="600" height="305" shaped>
-              <v-card-title>Timeline</v-card-title>
+              <v-card-title>时间线</v-card-title>
               <v-card-text>
                 <v-list light rounded>
                   <v-list-item-group v-model="item" color="red lighten-2">
@@ -70,7 +70,7 @@
             </v-tab-item>
             <v-tab-item>
               <v-spacer></v-spacer>
-              <h3 class="text-left pa-3">发布者：万能根结点</h3>
+              <h3 class="text-left pa-3">发布者：{{task.creator}}</h3>
             </v-tab-item>
           </v-tabs>
         </v-card>

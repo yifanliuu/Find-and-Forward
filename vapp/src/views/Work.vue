@@ -66,16 +66,16 @@
           </v-expand-transition>
           <v-card-actions>
             <v-btn :disabled="!model" color="grey darken-2" @click="update()">
-              Change
+              刷新任务
               <v-icon right>mdi-flag</v-icon>
             </v-btn>
             <v-spacer></v-spacer>
             <v-btn :disabled="!model" color="grey darken-2" @click="model = null">
-              Clear
+              清除
               <v-icon right>mdi-close-circle</v-icon>
             </v-btn>
             <v-btn :disabled="!model" color="grey darken-2" @click="submit()">
-              Submit
+              提交
               <v-icon right>mdi-cloud-upload</v-icon>
             </v-btn>
           </v-card-actions>

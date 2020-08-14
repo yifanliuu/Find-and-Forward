@@ -100,7 +100,7 @@ export default {
   },
 
   async mounted() {
-    const res_task = await this.$axios.get("/api/task", {
+    const res_task = await this.$axios.get("/api/task/create", {
       params: {
         user_id: this.user_id,
       },

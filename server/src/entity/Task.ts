@@ -30,4 +30,11 @@ export class Task {
 
     @Column()
     subtask_num: number;
+    /*
+    @Column({
+        type: "datetime",
+        default: new Date(),
+    })
+    submit_time: Date;
+    */
 }

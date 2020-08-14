@@ -1,4 +1,4 @@
-# DApp demo
+# Find & Forward (for ASAIM)
 
 ## Test
 
@@ -15,6 +15,14 @@ truffle(develop)> migrate
 ```
 
 -   wait for the migration to complete before proceeding
+
+2. Run the server
+
+```
+$ cd server
+$ npm i
+$ npm start
+```
 
 2. Run Vue App
 
