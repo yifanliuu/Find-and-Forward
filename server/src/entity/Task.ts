@@ -1,13 +1,7 @@
-import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    PrimaryColumn,
-    Double,
-} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 @Entity()
 export class Task {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
@@ -19,8 +13,10 @@ export class Task {
     @Column()
     photo_path: string;
 
-    @Column()
-    deadline: string;
+    @Column({
+        type: "datetime",
+    })
+    deadline: Date;
 
     @Column()
     content: string;
@@ -30,11 +26,15 @@ export class Task {
 
     @Column()
     subtask_num: number;
-    /*
+
     @Column({
         type: "datetime",
-        default: new Date(),
+        default: () => "CURRENT_TIMESTAMP",
     })
     submit_time: Date;
-    */
+
+    @Column({
+        type: "int",
+    })
+    money: number;
 }

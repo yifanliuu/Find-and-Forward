@@ -27,10 +27,14 @@ export async function getTaskByTask(context: Context) {
     taskinfo["title"] = task[0]["title"];
     taskinfo["summary"] = task[0]["summary"];
     taskinfo["photo_path"] = task[0]["photo_path"];
-    taskinfo["deadline"] = task[0]["deadline"];
+    taskinfo["deadline"] = task[0]["deadline"].toISOString().substr(0, 10);
     taskinfo["content"] = task[0]["content"];
+    taskinfo["submit_time"] = task[0]["submit_time"]
+        .toISOString()
+        .substr(0, 10);
 
     taskinfo["creator"] = user.username;
+    taskinfo["money"] = task[0].money;
 
     const taskinfo2 = { task: taskinfo };
     context.body = { payload: taskinfo2 };

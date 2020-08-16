@@ -14,6 +14,7 @@
               name="用户名"
               prepend-icon="mdi-account"
               type="text"
+              color="red lighten-2"
               v-model="user_name"
             ></v-text-field>
             <v-text-field
@@ -21,6 +22,7 @@
               name="密码"
               prepend-icon="mdi-lock"
               type="password"
+              color="red lighten-2"
               v-model="password"
             ></v-text-field>
           </v-form>

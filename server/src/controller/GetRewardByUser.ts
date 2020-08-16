@@ -24,7 +24,7 @@ export async function getRewardByUser(context: Context) {
         tasklt[i] = {};
         const taskinfo = await TaskRepo.findOne({ id: tid });
         tasklt[i]["task_title"] = taskinfo.title;
-        tasklt[i]["deadline"] = taskinfo.deadline;
+        tasklt[i]["deadline"] = taskinfo.deadline.toISOString().substr(0, 10);
         /*tasklt[i]["work_contrib"]=ctask.work_contrib;
   	tasklt[i]["invite_contrib"]=ctask.invite_contrib;
   	tasklt[i]["total_contrib"]=ctask.total_contrib;*/

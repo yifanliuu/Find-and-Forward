@@ -50,8 +50,8 @@
                   color="red lighten-2"
                 >
                   <v-spacer></v-spacer>
-                  <v-btn text color="red lighten-2" @click="menu = false">Cancel</v-btn>
-                  <v-btn text color="red lighten-2" @click="$refs.menu.save(date)">OK</v-btn>
+                  <v-btn text color="red lighten-2" @click="menu = false">取消</v-btn>
+                  <v-btn text color="red lighten-2" @click="$refs.menu.save(date)">确认</v-btn>
                 </v-date-picker>
               </v-menu>
               <v-text-field
@@ -128,7 +128,6 @@ export default {
         content: "",
         subtask_num: null,
         creator: this.user_id,
-        deadline: "",
       },
     };
   },
@@ -138,8 +137,50 @@ export default {
   async mounted() {},
   methods: {
     async create_task() {
-      this.task.deadline = this.date;
-      console.log(this.task);
+      this.$confirm(
+        "此操作将创建任务并将扣除相应的任务奖励, 是否继续?",
+        "提示",
+        {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning",
+        }
+      )
+        .then(async () => {
+          if (this.balance < this.task.subtask_num * this.task.subtask_num) {
+            this.$message({
+              type: "error",
+              message: "提交失败!",
+            });
+            return;
+          }
+          const res = await this.$axios.post("/api/task/create", {
+            title: this.task.title,
+            summary: this.task.summary,
+            photo_path: this.task.photo_path,
+            deadline: this.date,
+            content: this.task.content,
+            creator_id: this.user_id,
+            subtask_num: this.task.subtask_num,
+          });
+          if (res.status == 404) {
+            this.$message({
+              type: "error",
+              message: "提交失败!",
+            });
+          } else {
+            this.$message({
+              type: "success",
+              message: "提交成功!",
+            });
+          }
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消提交",
+          });
+        });
     },
   },
 };

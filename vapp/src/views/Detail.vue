@@ -26,7 +26,7 @@
                       <v-list-item-content>
                         <v-row>
                           <v-col md="2">任务开始</v-col>
-                          <v-col>2020-07-23 10:20</v-col>
+                          <v-col>{{task.submit_time}}</v-col>
                         </v-row>
                       </v-list-item-content>
                     </v-list-item>
@@ -37,7 +37,7 @@
                       <v-list-item-content>
                         <v-row>
                           <v-col md="2">任务截止</v-col>
-                          <v-col>{{task.deadline}}</v-col>
+                          <v-col>{{task.deadline.substr(0, 10)}}</v-col>
                         </v-row>
                       </v-list-item-content>
                     </v-list-item>
@@ -48,7 +48,7 @@
                       <v-list-item-content>
                         <v-row>
                           <v-col md="2">奖励发放</v-col>
-                          <v-col>{{task.deadline}}</v-col>
+                          <v-col>{{task.deadline.substr(0, 10)}}</v-col>
                         </v-row>
                       </v-list-item-content>
                     </v-list-item>
@@ -71,6 +71,7 @@
             <v-tab-item>
               <v-spacer></v-spacer>
               <h3 class="text-left pa-3">发布者：{{task.creator}}</h3>
+              <h3 class="text-left pa-3">奖金池：{{task.money}}</h3>
             </v-tab-item>
           </v-tabs>
         </v-card>
@@ -108,6 +109,8 @@ export default {
     const res = await this.$axios.get(`/api/task/detail/${this.id}`);
     //console.log(res);
     this.task = res.data.payload.task;
+    this.task.submit_time = this.task.submit_time.substr(0, 10);
+    this.task.deadline = this.task.deadline.substr(0, 10);
   },
   methods: {},
 };

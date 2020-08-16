@@ -94,6 +94,16 @@ export default {
     });
     //console.log(res.data.payload);
     this.tasks = res_task.data.payload;
+
+    const res_task_create = await this.$axios.get("/api/task/create", {
+      params: {
+        user_id: this.user_id,
+      },
+    });
+    //console.log(res.data.payload);
+    res_task_create.data.payload.forEach((item) => {
+      this.tasks.push(item);
+    });
     this.initiallized = true;
   },
 

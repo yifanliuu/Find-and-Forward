@@ -1,24 +1,28 @@
-import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    PrimaryColumn,
-    Double,
-} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 @Entity()
 export class Movie {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     subtask_id: number;
 
-    @Column()
+    @Column({
+        default: -1,
+        type: "int",
+    })
     user_id: number;
 
-    @Column()
+    @Column({
+        type: "text",
+    })
     content: string;
 
-    @Column()
+    @Column({
+        type: "int",
+        default: -1,
+    })
     result: number;
 
-    @Column()
+    @Column({
+        type: "int",
+    })
     task_id: number;
 }

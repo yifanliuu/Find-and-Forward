@@ -43,14 +43,14 @@
                       <v-col md="3">
                         <v-radio-group multiple v-model="items" row>
                           <v-radio
-                            label="Positive"
+                            label="积极"
                             color="red lighten-2"
                             :disabled="disabled"
                             :value="`pos_${item.subtask_id}`"
                             @click="save_pos(item.subtask_id)"
                           ></v-radio>
                           <v-radio
-                            label="Negative"
+                            label="消极"
                             color="red lighten-2"
                             :disabled="disabled"
                             :value="`neg_${item.subtask_id}`"
@@ -142,6 +142,7 @@ export default {
       const res = await this.$axios.get("/api/task/content", {
         params: {
           subtask_num: 5,
+          task_id: this.model.id,
         },
       });
       console.log(res.data.payload);
@@ -162,6 +163,7 @@ export default {
       const res = await this.$axios.get("/api/task/content", {
         params: {
           subtask_num: 5,
+          task_id: this.model.id,
         },
       });
       console.log(res.data.payload);

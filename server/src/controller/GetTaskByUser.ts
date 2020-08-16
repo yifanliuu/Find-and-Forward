@@ -11,11 +11,6 @@ export async function getTaskByUser(context: Context) {
     const { user_id } = context.request.query;
     const uid = user_id;
     //let's say admin id is 9
-    if (uid == 9) {
-        const tasks = await TaskRepo.find();
-        context.body = { payload: tasks };
-        return;
-    }
     const ContribRepo = getManager().getRepository(Contrib);
     const tasks = await ContribRepo.find({ where: { user_id: uid } });
     /*const tasks=await ContribRepo.createQueryBuilder()
@@ -39,7 +34,7 @@ export async function getTaskByUser(context: Context) {
         tasklist[i]["id"] = curtask.id;
         tasklist[i]["title"] = curtask.title;
         tasklist[i]["summary"] = curtask.summary;
-        tasklist[i]["deadline"] = curtask.deadline;
+        tasklist[i]["deadline"] = curtask.deadline.toISOString().substr(0, 10);
         tasklist[i]["photo_path"] = curtask.photo_path;
     }
     context.body = { payload: tasklist };

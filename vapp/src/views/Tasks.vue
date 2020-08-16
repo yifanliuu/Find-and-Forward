@@ -93,7 +93,7 @@ export default {
 
     const res1 = await this.$axios.get("/api/task/create", {
       params: {
-        creator: this.user_id,
+        user_id: this.user_id,
       },
     });
     //console.log(res1.data.payload);
